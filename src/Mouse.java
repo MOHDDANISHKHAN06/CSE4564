@@ -2,6 +2,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Mouse implements MouseListener {
+    
     int xCoord, yCoord;
     Mouse(){
 
@@ -13,8 +14,6 @@ public class Mouse implements MouseListener {
         int y = e.getY();
         xCoord = x;
         yCoord = y;
-//        Box box = new Box(x,y);
-//        RightPanel rp = new RightPanel(x, y);
     }
 
     public int getXCoord() {

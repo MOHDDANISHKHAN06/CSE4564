@@ -1,39 +1,53 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
-public class RightPanel extends JPanel{
-    Mouse m;
-    RightPanel() {
-        JPanel p1 = new JPanel();
+public class RightPanel extends JPanel implements MouseListener {
+
+    ArrayList<Point> points;
+    JPanel jPanel;
+
+    public RightPanel() {
+        this.setLayout(null);
+        this.addMouseListener(new MouseInputAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int x = e.getX();
+                int y = e.getY();
+                System.out.println("x : " + x);
+                add(new Box(x, y));
+                revalidate();
+                repaint();
+            }
+        });
     }
-    RightPanel(Mouse m){
-        this.m = m;
-    }
-    Component plotGui(Mouse m){
-//        JPanel subPanel1 = new JPanel();
-        this.addMouseListener(m);
-        return this;
-    }
-//
-//    Box getbox(Box b){
-//
-//    }
+
     @Override
-    public void paintComponent (Graphics g)
-    {
+    public void mouseClicked(MouseEvent e) {
 
-        int xCoord = m.getXCoord();
-        int yCoord = m.getYCoord();
+    }
 
-        System.out.println(xCoord + " " + yCoord);
+    @Override
+    public void mousePressed(MouseEvent e) {
 
-        Box box = new Box(xCoord, yCoord);
+    }
 
-        super.paintComponent(g);
-        setForeground(Color.black);
-        setForeground(Color.yellow);
-        //g.drawLine(xpoints[0], ypoints[0],xpoints[1], ypoints[1]);
+    @Override
+    public void mouseReleased(MouseEvent e) {
 
-        g.fillRect(xCoord, yCoord, 200, 100);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

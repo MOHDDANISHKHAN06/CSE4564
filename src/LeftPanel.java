@@ -1,13 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
 
-public class LeftPanel {
+public class LeftPanel extends JPanel{
     LeftPanel(){
-
-    }
-    Component addText(){
-        JTextArea jt = new JTextArea(10, 10);
-        Component left = new JScrollPane(jt);
-        return left;
+        JTextArea jt = new JTextArea(100,10);
+        this.add(jt);
     }
 }
