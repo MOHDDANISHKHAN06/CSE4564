@@ -1,9 +1,6 @@
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
-import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
-
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +33,6 @@ public class Box extends JPanel implements MouseInputListener {
 
    @Override
    public void mouseClicked(MouseEvent e) {
-      System.out.println("clicked on a box");
       clickEmulator();
    }
 

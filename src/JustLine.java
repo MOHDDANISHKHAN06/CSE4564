@@ -20,8 +20,7 @@ public class JustLine extends JPanel implements Arrow {
     this.y1 = y1;
     this.x2 = x2;
     this.y2 = y2;
-    this.revalidate();
-    this.repaint();
+    // System.out.println("Just line draw LIne");  
     return this;
   }
 
