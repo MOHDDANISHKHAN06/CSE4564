@@ -43,6 +43,7 @@ public class RightPanel extends JPanel implements Observable {
                     rightPanel.add(newBox);
                     rightPanel.revalidate();
                     rightPanel.repaint();
+                    rightPanel.sendUpdate();
                 }
             }
         });
@@ -65,17 +66,20 @@ public class RightPanel extends JPanel implements Observable {
     }
 
     @Override
-    public void addSubscriber() {
-
+    public void addSubscriber(Observer o) {
+        observerArrayList.add(o);
     }
 
     @Override
-    public void removeSubscriber() {
-
+    public void removeSubscriber(Observer o) {
+        int observerIndex = observerArrayList.indexOf(o);
+        observerArrayList.remove(observerIndex);
     }
 
     @Override
     public void sendUpdate() {
-
+        for (Observer observer : observerArrayList) {
+            observer.update(boxes);
+        }
     }
 }
