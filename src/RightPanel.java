@@ -1,8 +1,7 @@
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.event.MouseInputAdapter;
-import javax.swing.event.MouseInputListener;
-
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -27,6 +26,7 @@ public class RightPanel extends JPanel implements Observable {
 
         rightPanel.setLayout(null);
         rightPanel.addMouseListener(new MouseInputAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
@@ -35,15 +35,15 @@ public class RightPanel extends JPanel implements Observable {
                 String className = JOptionPane.showInputDialog("Class Name");
                 if ((className != null)) {
                     if (className.length() == 0) {
-                        // Can generate a random class name as well
                         className = "noClassName";
                     }
                     Box newBox = new Box(x, y, className);
                     boxes.add(newBox);
                     rightPanel.add(newBox);
+                    rightPanel.sendUpdate();
                     rightPanel.revalidate();
                     rightPanel.repaint();
-                    rightPanel.sendUpdate();
+
                 }
             }
         });
@@ -59,7 +59,40 @@ public class RightPanel extends JPanel implements Observable {
     public void boxClickTracker(Box box) {
         mouseTracker.add(box);
         if (mouseTracker.size() == 2) {
-            System.out.println("Invoke an arrow function");
+
+            // JOptionPane popup = new JOptionPane();
+            // JRadioButton nicSelect = new JRadioButton("What is the relationship");
+            // JRadioButton b1 = new JRadioButton("Inheritance");
+            // JRadioButton b2 = new JRadioButton("Composition");
+            // JRadioButton b3 = new JRadioButton("Association");
+            // popup.add(nicSelect);
+            // popup.add(b1);
+            // popup.add(b2);
+            // popup.add(b3);
+
+            // rightPanel.add(new JRadioButton("radio"));
+            // rightPanel.revalidate();
+            // rightPanel.repaint();
+
+            // String[] options = new String[] { "Inheritance", "Composition", "Association"
+            // };
+            // int response = JOptionPane.showOptionDialog(rightPanel, "Select Relation",
+            // "Relation",
+            // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+            // null, options, options[0]);
+            int response = 0;
+            if (response == 0) {
+                System.out.println("Inheritance");
+                Arrow arrow = new InheritanceDecoration(new JustLine());
+                // Arrow arrow = new JustLine();
+                rightPanel.add(arrow.drawLine(100, 40, 300, 89));
+                rightPanel.revalidate();
+                rightPanel.repaint();
+            } else if (response == 1) {
+                System.out.println("Composition");
+            } else
+                System.out.println("Association");
+
             mouseTracker.clear();
         }
 

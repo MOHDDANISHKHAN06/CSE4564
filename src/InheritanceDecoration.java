@@ -13,6 +13,7 @@ public class InheritanceDecoration extends JustLineDecorator {
     public InheritanceDecoration(Arrow arrow) {
         super(arrow);
         setLayout(null);
+        System.out.println("WHERW");
         setPreferredSize(new Dimension(100, 500));
     }
 
