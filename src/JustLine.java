@@ -8,10 +8,35 @@ public class JustLine extends JPanel implements Arrow {
   int y1;
   int x2;
   int y2;
+  int boundX;
+  int boundY;
+  int boundW;
+  int boundH;
 
-  public JustLine() {
+  public int getBoundX() {
+    return boundX;
+  }
+
+  public int getBoundY() {
+    return boundY;
+  }
+
+  public int getBoundW() {
+    return boundW;
+  }
+
+  public int getBoundH() {
+    return boundH;
+  }
+
+  public JustLine(int boundX, int boundY, int boundW, int boundH) {
     setLayout(null);
-    setSize(600, 100);
+    System.out.println("ME HRER");
+    this.boundX = boundX;
+    this.boundY = boundY;
+    this.boundW = boundW;
+    this.boundH = boundH;
+    setBounds(boundX, boundY, boundW-20, boundH-20);
   }
 
   @Override
@@ -20,15 +45,19 @@ public class JustLine extends JPanel implements Arrow {
     this.y1 = y1;
     this.x2 = x2;
     this.y2 = y2;
-    // System.out.println("Just line draw LIne");  
+    this.x1 = 0;
+    this.x2 = 20;
+    this.y1 = 0;
+    this.y2 = 20;
     return this;
   }
 
   @Override
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  public void paint(Graphics g) {
+    super.paint(g);
     setBackground(Color.GRAY);
     g.setColor(Color.BLACK);
+    System.out.println("BOIDU");
     g.drawLine(x1, y1, x2, y2);
   }
 

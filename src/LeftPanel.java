@@ -19,8 +19,8 @@ public class LeftPanel extends JPanel implements Observer {
         jt.selectAll();
         jt.replaceSelection(" ");
         write_string();
-        this.revalidate();
-        this.repaint();
+        // this.revalidate();
+        // this.repaint();
     }
 
     public void write_string() {

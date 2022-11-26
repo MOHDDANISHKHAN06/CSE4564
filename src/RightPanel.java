@@ -25,7 +25,6 @@ public class RightPanel extends JPanel implements Observable {
 
         rightPanel.setLayout(null);
         rightPanel.addMouseListener(new MouseInputAdapter() {
-
             @Override
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
@@ -36,17 +35,20 @@ public class RightPanel extends JPanel implements Observable {
                     if (className.length() == 0) {
                         className = "noClassName";
                     }
-                    Box newBox = new Box(x, y, className);
-                    boxes.add(newBox);
-                    rightPanel.add(newBox);
-                    rightPanel.sendUpdate();
-                    rightPanel.revalidate();
-                    rightPanel.repaint();
-
+                    rightPanel.addNewBox(x, y, className);
                 }
             }
         });
         return rightPanel;
+    }
+
+    public void addNewBox(int x, int y, String className) {
+        Box newBox = new Box(x, y, className);
+        boxes.add(newBox);
+        rightPanel.add(newBox);
+        rightPanel.sendUpdate();
+        rightPanel.revalidate();
+        rightPanel.repaint();
     }
 
     public void listRenderedBoxes() {
@@ -58,43 +60,30 @@ public class RightPanel extends JPanel implements Observable {
     public void boxClickTracker(Box box) {
         mouseTracker.add(box);
         if (mouseTracker.size() == 2) {
-
-            // JOptionPane popup = new JOptionPane();
-            // JRadioButton nicSelect = new JRadioButton("What is the relationship");
-            // JRadioButton b1 = new JRadioButton("Inheritance");
-            // JRadioButton b2 = new JRadioButton("Composition");
-            // JRadioButton b3 = new JRadioButton("Association");
-            // popup.add(nicSelect);
-            // popup.add(b1);
-            // popup.add(b2);
-            // popup.add(b3);
-
-            // rightPanel.add(new JRadioButton("radio"));
-            // rightPanel.revalidate();
-            // rightPanel.repaint();
-
-            // String[] options = new String[] { "Inheritance", "Composition", "Association"
-            // };
-            // int response = JOptionPane.showOptionDialog(rightPanel, "Select Relation",
-            // "Relation",
-            // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-            // null, options, options[0]);
-            int response = 0;
-            if (response == 0) {
-                System.out.println("Inheritance");
-                Arrow arrow = new InheritanceDecoration(new JustLine());
-                // Arrow arrow = new JustLine();
-                rightPanel.add(arrow.drawLine(100, 40, 300, 89));
-                rightPanel.revalidate();
-                rightPanel.repaint();
-            } else if (response == 1) {
-                System.out.println("Composition");
-            } else
-                System.out.println("Association");
-
+            handleRelations();
             mouseTracker.clear();
         }
 
+    }
+
+    public void handleRelations() {
+        Box b1 = mouseTracker.get(0);
+        Box b2 = mouseTracker.get(1);
+        int boundX = Math.min(b1.x, b2.x) + 50;
+        int boundY = Math.min(b1.y, b2.y) + 20;
+        int boundW = Math.abs(b2.x - b1.x);
+        int boundH = Math.abs(b2.y - b1.y);
+        int response = 0;
+        if (response == 0) {
+            System.out.println("Inheritance");
+            Arrow arrow = new InheritanceDecoration(new JustLine(boundX, boundY, boundW, boundH));
+            rightPanel.add(arrow.drawLine(10, 10, 50, 20));
+        } else if (response == 1) {
+            System.out.println("Composition");
+        } else
+            System.out.println("Association");
+        rightPanel.revalidate();
+        rightPanel.repaint();
     }
 
     @Override
