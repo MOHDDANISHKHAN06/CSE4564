@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class RightPanel extends JPanel implements Observable {
 
-    private static RightPanel rightPanel;
+    public static RightPanel rightPanel;
     private static ArrayList<Box> boxes;
     private static ArrayList<Box> mouseTracker;
+    private static ArrayList<RelationShip> relationShips;
 
     private RightPanel() {
     }
@@ -21,6 +22,7 @@ public class RightPanel extends JPanel implements Observable {
             rightPanel = new RightPanel();
             boxes = new ArrayList<>();
             mouseTracker = new ArrayList<>();
+            relationShips = new ArrayList<>();
         }
 
         rightPanel.setLayout(null);
@@ -29,26 +31,20 @@ public class RightPanel extends JPanel implements Observable {
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
+                rightPanel.addNewBox(x, y);
 
-                String className = JOptionPane.showInputDialog("Class Name");
-                if ((className != null)) {
-                    if (className.length() == 0) {
-                        className = "noClassName";
-                    }
-                    rightPanel.addNewBox(x, y, className);
-                }
             }
         });
         return rightPanel;
     }
 
-    public void addNewBox(int x, int y, String className) {
-        Box newBox = new Box(x, y, className);
-        boxes.add(newBox);
-        rightPanel.add(newBox);
-        rightPanel.sendUpdate();
-        rightPanel.revalidate();
-        rightPanel.repaint();
+    public void addNewBox(int x, int y) {
+        Box newBox = new Box(x, y);
+        if (newBox.getBoxCreated()) {
+            boxes.add(newBox);
+            sendUpdate();
+            updateRightPanel();
+        }
     }
 
     public void listRenderedBoxes() {
@@ -69,21 +65,32 @@ public class RightPanel extends JPanel implements Observable {
     public void handleRelations() {
         Box b1 = mouseTracker.get(0);
         Box b2 = mouseTracker.get(1);
-        int boundX = Math.min(b1.x, b2.x) + 50;
-        int boundY = Math.min(b1.y, b2.y) + 20;
-        int boundW = Math.abs(b2.x - b1.x);
-        int boundH = Math.abs(b2.y - b1.y);
         int response = 0;
         if (response == 0) {
             System.out.println("Inheritance");
-            Arrow arrow = new InheritanceDecoration(new JustLine(boundX, boundY, boundW, boundH));
-            rightPanel.add(arrow.drawLine(10, 10, 50, 20));
+            relationShips.add(new RelationShip(b1, b2, "Inheritance"));
+            updateRightPanel();
         } else if (response == 1) {
             System.out.println("Composition");
         } else
             System.out.println("Association");
-        rightPanel.revalidate();
-        rightPanel.repaint();
+    }
+
+    public void updateRightPanel() {
+        removeAll();
+        System.out.println("rePainting started");
+        for (int i = 0; i < boxes.size(); ++i) {
+            add(boxes.get(i));
+        }
+        revalidate();
+        repaint();
+        System.out.println("RELATION SHIPS : " + relationShips.size());
+        for (int i = 0; i < relationShips.size(); ++i) {
+            Box b1 = relationShips.get(i).b1;
+            Box b2 = relationShips.get(i).b2;
+            Arrow arrow = new InheritanceDecoration(new JustLine());
+            arrow.drawLine(b1.x, b1.y, b2.x, b2.y);
+        }
     }
 
     @Override
