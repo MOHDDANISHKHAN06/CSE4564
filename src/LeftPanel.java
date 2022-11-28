@@ -30,7 +30,7 @@ public class LeftPanel extends JPanel implements Observer {
 
         removeAll();
         subLeftPanels.clear();
-        
+
         for (Box each_box : boxes) {
             SubLeftPanel codePanel = new SubLeftPanel(6, 45);
             // use builder pattern
@@ -62,7 +62,6 @@ public class LeftPanel extends JPanel implements Observer {
         for (SubLeftPanel subLeftPanel : subLeftPanels) {
 
             if (box == subLeftPanel.box) {
-                System.out.println("BOX : " + box + "  BOX@ : " + subLeftPanel.box);
                 return subLeftPanel;
             }
         }
