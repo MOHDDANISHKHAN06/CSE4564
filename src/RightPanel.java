@@ -16,7 +16,7 @@ public class RightPanel extends JPanel implements Observable {
 
     JPanel jPanel;
 
-    public static RightPanel getRightPanel() {
+    public static void getRightPanel() {
 
         if (rightPanel == null) {
             rightPanel = new RightPanel();
@@ -35,7 +35,6 @@ public class RightPanel extends JPanel implements Observable {
 
             }
         });
-        return rightPanel;
     }
 
     public void addNewBox(int x, int y) {
@@ -68,7 +67,8 @@ public class RightPanel extends JPanel implements Observable {
         int response = 0;
         if (response == 0) {
             System.out.println("Inheritance");
-            relationShips.add(new RelationShip(b1, b2, "Inheritance"));
+            Arrow arrow = new InheritanceDecoration(new JustLine());
+            relationShips.add(new RelationShip(b1, b2, "Inheritance", arrow));
             updateRightPanel();
         } else if (response == 1) {
             System.out.println("Composition");
@@ -77,20 +77,20 @@ public class RightPanel extends JPanel implements Observable {
     }
 
     public void updateRightPanel() {
-        removeAll();
+        // removeAll();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
-            add(boxes.get(i));
+            rightPanel.add(boxes.get(i));
         }
-        revalidate();
-        repaint();
-        System.out.println("RELATION SHIPS : " + relationShips.size());
+        
         for (int i = 0; i < relationShips.size(); ++i) {
             Box b1 = relationShips.get(i).b1;
             Box b2 = relationShips.get(i).b2;
-            Arrow arrow = new InheritanceDecoration(new JustLine());
+            Arrow arrow = relationShips.get(i).arrow;
+            // move it inside later.
             arrow.drawLine(b1.x, b1.y, b2.x, b2.y);
         }
+
     }
 
     @Override

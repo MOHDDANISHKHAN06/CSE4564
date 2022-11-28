@@ -34,6 +34,8 @@ public class Box extends JPanel implements MouseInputListener {
          this.add(ta);
          boxCreated = true;
          this.setBackground(Color.RED);
+         this.revalidate();
+         this.repaint();
       }
    }
 

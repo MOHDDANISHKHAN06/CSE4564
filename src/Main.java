@@ -18,9 +18,9 @@ public class Main extends JFrame {
         mb.add(file);
         mb.add(help);
         LeftPanel lp = new LeftPanel();
-        RightPanel rp = RightPanel.getRightPanel(); 
-        rp.addSubscriber(lp);
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, rp);
+        RightPanel.getRightPanel();
+        RightPanel.rightPanel.addSubscriber(lp);
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
         split.setDividerLocation(500);
         frame.getContentPane().add(split);
         frame.setJMenuBar(mb);
