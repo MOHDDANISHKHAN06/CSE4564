@@ -13,7 +13,7 @@ public class LeftPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void update(ArrayList<Box> boxes) {
+    public void update(ArrayList<Box> boxes, ArrayList<RelationShip> relationShips) {
         System.out.println("in update");
         boxobjectarray = boxes;
         jt.selectAll();

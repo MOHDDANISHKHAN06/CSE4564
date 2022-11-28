@@ -1,5 +1,6 @@
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class RightPanel extends JPanel implements Observable {
     private static ArrayList<Box> boxes;
     private static ArrayList<Box> mouseTracker;
     private static ArrayList<RelationShip> relationShips;
+    static int response = -1;
 
     private RightPanel() {
     }
@@ -41,7 +43,7 @@ public class RightPanel extends JPanel implements Observable {
         Box newBox = new Box(x, y);
         if (newBox.getBoxCreated()) {
             boxes.add(newBox);
-            sendUpdate();
+            // sendUpdate();
             updateRightPanel();
         }
     }
@@ -64,7 +66,21 @@ public class RightPanel extends JPanel implements Observable {
     public void handleRelations() {
         Box b1 = mouseTracker.get(0);
         Box b2 = mouseTracker.get(1);
-        int response = 0;
+        JOptionPane popup = new JOptionPane();
+
+        JRadioButton nicSelect = new JRadioButton("What is the relationship");
+        JRadioButton button1 = new JRadioButton("Inheritance");
+        JRadioButton button2 = new JRadioButton("Composition");
+        JRadioButton button3 = new JRadioButton("Association");
+        popup.add(nicSelect);
+        popup.add(button1);
+        popup.add(button2);
+        popup.add(button3);
+        String[] options = new String[] {"Inheritance", "Composition", "Association"};
+        response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[0]);
+ 
         if (response == 0) {
             System.out.println("Inheritance");
             Arrow arrow = new InheritanceDecoration(new JustLine());
@@ -92,7 +108,7 @@ public class RightPanel extends JPanel implements Observable {
             // move it inside later.
             arrow.drawLine(b1.x, b1.y, b2.x, b2.y);
         }
-
+        sendUpdate();
     }
 
     @Override
@@ -109,7 +125,7 @@ public class RightPanel extends JPanel implements Observable {
     @Override
     public void sendUpdate() {
         for (Observer observer : observerArrayList) {
-            observer.update(boxes);
+            observer.update(RightPanel.boxes, RightPanel.relationShips);
         }
     }
 }
