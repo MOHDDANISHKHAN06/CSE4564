@@ -8,12 +8,14 @@ public class CompositionChain implements Chain {
     }
 
     @Override
-    public void drawArrow(int response) {
+    public void createArrow(int response, Box b1, Box b2) {
         if (response == 1) {
             System.out.println("Generating Composition Arrow");
-        }
-        else{
-            nextInChain.drawArrow(response);
+
+            Arrow arrow = new CompostionDecoration(new JustLine());
+            RightPanel.getRelationShips().add(new RelationShip(b1, b2, "Association", arrow));
+        } else {
+            nextInChain.createArrow(response, b1, b2);
         }
     }
 

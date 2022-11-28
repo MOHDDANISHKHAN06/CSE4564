@@ -8,11 +8,13 @@ public class AssociationChain implements Chain {
     }
 
     @Override
-    public void drawArrow(int response) {
+    public void createArrow(int response, Box b1, Box b2) {
         System.out.println("Generating Association Arrow");
         if (response != -1) {
             Arrow arrow = new JustLine();
-            // arrow.drawLine(response, response, response, response);
+            RightPanel.getRelationShips().add(new RelationShip(b1, b2, "Association", arrow));
+        } else {
+            System.out.println("No relation Ship Selected");
         }
     }
 }

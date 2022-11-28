@@ -11,6 +11,7 @@ public class RightPanel extends JPanel implements Observable {
     private static ArrayList<Box> boxes;
     private static ArrayList<Box> mouseTracker;
     private static ArrayList<RelationShip> relationShips;
+
     public static ArrayList<Box> getBoxes() {
         return boxes;
     }
@@ -87,24 +88,15 @@ public class RightPanel extends JPanel implements Observable {
         // response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
         // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
         // null, options, options[0]);
+
         Chain iChain = new InheritanceChain();
         Chain aChain = new AssociationChain();
         Chain cChain = new CompositionChain();
         iChain.setChainNext(cChain);
         cChain.setChainNext(aChain);
-        int response = 1;
-
-        iChain.drawArrow(response);
-
-        // if (response == 0) {
-        // System.out.println("Inheritance");
-        // Arrow arrow = new InheritanceDecoration(new JustLine());
-        // relationShips.add(new RelationShip(b1, b2, "Inheritance", arrow));
-        // updateRightPanel();
-        // } else if (response == 1) {
-        // System.out.println("Composition");
-        // } else
-        // System.out.println("Association");
+        int response = 2;
+        iChain.createArrow(response, b1, b2);
+        updateRightPanel();
     }
 
     public void updateRightPanel() {
