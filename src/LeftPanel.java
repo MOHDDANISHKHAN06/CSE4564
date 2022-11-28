@@ -1,15 +1,25 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.awt.FlowLayout;
 
 public class LeftPanel extends JPanel implements Observer {
     String text_output = "";
     JTextArea jt;
+    JTextArea jt2;
     int len = 0;
     private static ArrayList<Box> boxobjectarray = new ArrayList<>();
-    
+
     LeftPanel() {
-        jt = new JTextArea(100, 45);
-        this.add(jt);
+        setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
+        jt = new JTextArea(6, 45);
+        jt2 = new JTextArea(6, 45);
+        jt.setLineWrap(true);
+        jt2.setLineWrap(true);
+
+        add(jt);
+        add(jt2);
+        jt.setText("MAKDJLDKFJLDKFJLFKJK");
+        jt2.setText("kfjskflj ksjlfk DflKDjfl dflKDFSLF LKDfjLDFSKfjl DflKDFLDSJfLSD fl lkD fAKDJLDKFJLDKFJLFKJK");
     }
 
     @Override

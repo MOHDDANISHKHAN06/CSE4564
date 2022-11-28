@@ -66,21 +66,22 @@ public class RightPanel extends JPanel implements Observable {
     public void handleRelations() {
         Box b1 = mouseTracker.get(0);
         Box b2 = mouseTracker.get(1);
-        JOptionPane popup = new JOptionPane();
+        // JOptionPane popup = new JOptionPane();
 
-        JRadioButton nicSelect = new JRadioButton("What is the relationship");
-        JRadioButton button1 = new JRadioButton("Inheritance");
-        JRadioButton button2 = new JRadioButton("Composition");
-        JRadioButton button3 = new JRadioButton("Association");
-        popup.add(nicSelect);
-        popup.add(button1);
-        popup.add(button2);
-        popup.add(button3);
-        String[] options = new String[] {"Inheritance", "Composition", "Association"};
-        response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-                    null, options, options[0]);
- 
+        // JRadioButton nicSelect = new JRadioButton("What is the relationship");
+        // JRadioButton button1 = new JRadioButton("Inheritance");
+        // JRadioButton button2 = new JRadioButton("Composition");
+        // JRadioButton button3 = new JRadioButton("Association");
+        // popup.add(nicSelect);
+        // popup.add(button1);
+        // popup.add(button2);
+        // popup.add(button3);
+        // String[] options = new String[] { "Inheritance", "Composition", "Association"
+        // };
+        // response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
+        // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+        // null, options, options[0]);
+        int response = 0;
         if (response == 0) {
             System.out.println("Inheritance");
             Arrow arrow = new InheritanceDecoration(new JustLine());
@@ -93,12 +94,10 @@ public class RightPanel extends JPanel implements Observable {
     }
 
     public void updateRightPanel() {
-        // removeAll();
+
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
-            // rightPanel.revalidate();
-            // rightPanel.repaint();
         }
 
         for (int i = 0; i < relationShips.size(); ++i) {
