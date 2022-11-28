@@ -10,9 +10,37 @@ import java.awt.event.MouseEvent;
 
 public class Box extends JPanel implements MouseInputListener {
 
-   public int x, y;
+   private int x, y;
    boolean boxCreated = false;
    String className = "noClassName";
+
+   public int getX() {
+      return x;
+   }
+
+   public void setX(int x) {
+      this.x = x;
+   }
+
+   public int getY() {
+      return y;
+   }
+
+   public void setY(int y) {
+      this.y = y;
+   }
+
+   public void setBoxCreated(boolean boxCreated) {
+      this.boxCreated = boxCreated;
+   }
+
+   public String getClassName() {
+      return className;
+   }
+
+   public void setClassName(String className) {
+      this.className = className;
+   }
 
    public Box(int x, int y) {
       className = JOptionPane.showInputDialog("Class Name");
