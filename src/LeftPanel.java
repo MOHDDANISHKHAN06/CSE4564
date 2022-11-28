@@ -1,4 +1,3 @@
-import javax.security.sasl.RealmCallback;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
@@ -22,8 +21,6 @@ public class LeftPanel extends JPanel implements Observer {
         this.boxes = boxes;
         this.relationShips = relationShips;
         write_string();
-        // this.revalidate();
-        // this.repaint();
     }
 
     public void write_string() {
@@ -49,7 +46,7 @@ public class LeftPanel extends JPanel implements Observer {
             }
         }
 
-        System.out.println("LEnthll " + subLeftPanels.size());
+        // System.out.println("LEnthll " + subLeftPanels.size());
         for (SubLeftPanel subLeftPanel : subLeftPanels) {
             add(subLeftPanel);
         }

@@ -11,6 +11,14 @@ public class RightPanel extends JPanel implements Observable {
     private static ArrayList<Box> boxes;
     private static ArrayList<Box> mouseTracker;
     private static ArrayList<RelationShip> relationShips;
+    public static ArrayList<Box> getBoxes() {
+        return boxes;
+    }
+
+    public static ArrayList<RelationShip> getRelationShips() {
+        return relationShips;
+    }
+
     static int response = -1;
 
     private RightPanel() {
@@ -26,7 +34,6 @@ public class RightPanel extends JPanel implements Observable {
             mouseTracker = new ArrayList<>();
             relationShips = new ArrayList<>();
         }
-
         rightPanel.setLayout(null);
         rightPanel.addMouseListener(new MouseInputAdapter() {
             @Override
@@ -34,7 +41,6 @@ public class RightPanel extends JPanel implements Observable {
                 int x = e.getX();
                 int y = e.getY();
                 rightPanel.addNewBox(x, y);
-
             }
         });
     }
@@ -81,30 +87,38 @@ public class RightPanel extends JPanel implements Observable {
         // response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
         // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
         // null, options, options[0]);
-        int response = 0;
-        if (response == 0) {
-            System.out.println("Inheritance");
-            Arrow arrow = new InheritanceDecoration(new JustLine());
-            relationShips.add(new RelationShip(b1, b2, "Inheritance", arrow));
-            updateRightPanel();
-        } else if (response == 1) {
-            System.out.println("Composition");
-        } else
-            System.out.println("Association");
+        Chain iChain = new InheritanceChain();
+        Chain aChain = new AssociationChain();
+        Chain cChain = new CompositionChain();
+        iChain.setChainNext(cChain);
+        cChain.setChainNext(aChain);
+        int response = 1;
+
+        iChain.drawArrow(response);
+
+        // if (response == 0) {
+        // System.out.println("Inheritance");
+        // Arrow arrow = new InheritanceDecoration(new JustLine());
+        // relationShips.add(new RelationShip(b1, b2, "Inheritance", arrow));
+        // updateRightPanel();
+        // } else if (response == 1) {
+        // System.out.println("Composition");
+        // } else
+        // System.out.println("Association");
     }
 
     public void updateRightPanel() {
 
+        removeAll();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
         }
-
+        // System.out.println("relationShize " + relationShips.size());
         for (int i = 0; i < relationShips.size(); ++i) {
             Box b1 = relationShips.get(i).b1;
             Box b2 = relationShips.get(i).b2;
             Arrow arrow = relationShips.get(i).arrow;
-            // move it inside later.
             arrow.drawLine(b1.getX(), b1.getY(), b2.getX(), b2.getY());
         }
         sendUpdate();

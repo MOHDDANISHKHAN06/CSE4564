@@ -15,9 +15,7 @@ public class InheritanceDecoration extends JustLineDecorator {
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        // RightPanel rp = RightPanel.getRightPanel();
         Graphics g = RightPanel.rightPanel.getGraphics();
-        // this.add(super.drawLine(x1, y1, x2, y2));
         super.drawLine(x1, y1, x2, y2);
         ix[0] = x2 + 10;
         iy[0] = y2;
