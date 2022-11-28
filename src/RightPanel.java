@@ -81,8 +81,10 @@ public class RightPanel extends JPanel implements Observable {
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
+            // rightPanel.revalidate();
+            // rightPanel.repaint();
         }
-        
+
         for (int i = 0; i < relationShips.size(); ++i) {
             Box b1 = relationShips.get(i).b1;
             Box b2 = relationShips.get(i).b2;
