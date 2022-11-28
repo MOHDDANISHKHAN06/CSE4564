@@ -61,9 +61,9 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
 
    @Override
    public void mouseReleased(MouseEvent e) {
-      this.x += e.getX();
-      this.y += e.getY();
-      RightPanel.rightPanel.updateRightPanel();
+      // this.x += e.getX();
+      // this.y += e.getY();
+      // RightPanel.rightPanel.updateRightPanel();
    }
 
    @Override
