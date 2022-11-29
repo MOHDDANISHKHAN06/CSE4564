@@ -24,6 +24,7 @@ public class InheritanceDecoration extends JustLineDecorator {
         ix[2] = x2;
         iy[2] = y2 - 10;
         g.drawPolygon(ix, iy, 3);
+        g.dispose();
     }
 
     // @Override

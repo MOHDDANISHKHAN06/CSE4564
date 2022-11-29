@@ -20,6 +20,7 @@ public class JustLine implements Arrow {
     this.y2 = y2;
     Graphics g = RightPanel.rightPanel.getGraphics();
     g.drawLine(x1, y1, x2, y2);
+    g.dispose();
   }
 
   // @Override

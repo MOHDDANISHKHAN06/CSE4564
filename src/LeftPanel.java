@@ -10,17 +10,21 @@ public class LeftPanel extends JPanel implements Observer {
     ArrayList<RelationShip> relationShips;
 
     LeftPanel() {
+
         boxes = new ArrayList<>();
         subLeftPanels = new ArrayList<>();
         setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
+
     }
 
     @Override
     public void update(ArrayList<Box> boxes, ArrayList<RelationShip> relationShips) {
+
         System.out.println("in update");
         this.boxes = boxes;
         this.relationShips = relationShips;
         write_string();
+
     }
 
     public void write_string() {
@@ -39,11 +43,12 @@ public class LeftPanel extends JPanel implements Observer {
 
         for (RelationShip relationShip : relationShips) {
 
-            SubLeftPanel foundPanel = findSubLeftPanel(relationShip.b1);
+            SubLeftPanel foundPanel = findSubLeftPanel(relationShip.getBox1());
             if (foundPanel != null) {
-                foundPanel.setRelationsText(relationShip.b2.getClassName());
+                foundPanel.setRelationsText(relationShip.getBox2().getClassName());
                 foundPanel.setCodeText();
             }
+
         }
 
         // System.out.println("LEnthll " + subLeftPanels.size());
