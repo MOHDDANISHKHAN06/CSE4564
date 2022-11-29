@@ -23,8 +23,6 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
          addMouseListener(this);
          this.setLayout(new GridBagLayout());
          this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-         this.x = x;
-         this.y = y;
          this.setLocation(x, y);
          JTextArea ta = new JTextArea();
          this.setSize(200, 40);
@@ -90,16 +88,18 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       return x;
    }
 
-   public void setX(int x) {
+   public Box setX(int x) {
       this.x = x;
+      return this;
    }
 
    public int getY() {
       return y;
    }
 
-   public void setY(int y) {
+   public Box setY(int y) {
       this.y = y;
+      return this;
    }
 
    public void setBoxCreated(boolean boxCreated) {

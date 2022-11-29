@@ -29,7 +29,7 @@ public class LeftPanel extends JPanel implements Observer {
         subLeftPanels.clear();
 
         for (Box each_box : boxes) {
-            SubLeftPanel codePanel = new SubLeftPanel(6, 45);
+            SubLeftPanel codePanel = new SubLeftPanel().setSubLeftPanelRows(6).setSubLeftPanelCols(45);
             // use builder pattern
             codePanel.setClassNameText(each_box.className);
             codePanel.setBox(each_box);
@@ -39,9 +39,9 @@ public class LeftPanel extends JPanel implements Observer {
 
         for (RelationShip relationShip : relationShips) {
 
-            SubLeftPanel foundPanel = findSubLeftPanel(relationShip.b1);
+            SubLeftPanel foundPanel = findSubLeftPanel(relationShip.box1);
             if (foundPanel != null) {
-                foundPanel.setRelationsText(relationShip.b2.getClassName());
+                foundPanel.setRelationsText(relationShip.box2.getClassName());
                 foundPanel.setCodeText();
             }
         }

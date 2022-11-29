@@ -108,8 +108,8 @@ public class RightPanel extends JPanel implements Observable {
         }
         
         for (int i = 0; i < relationShips.size(); ++i) {
-            Box b1 = relationShips.get(i).b1;
-            Box b2 = relationShips.get(i).b2;
+            Box b1 = relationShips.get(i).box1;
+            Box b2 = relationShips.get(i).box2;
             Arrow arrow = relationShips.get(i).arrow;
             arrow.drawLine(b1.getX(), b1.getY(), b2.getX(), b2.getY());
         }
