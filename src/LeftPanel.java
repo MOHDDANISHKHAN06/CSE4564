@@ -46,13 +46,13 @@ public class LeftPanel extends JPanel implements Observer {
             SubLeftPanel foundPanel = findSubLeftPanel(relationShip.getBox1());
             if (foundPanel != null) {
                 if (relationShip.getType() == "Association") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setAssociationText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 } else if (relationShip.getType() == "Inheritance") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setInheritanceText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 } else if (relationShip.getType() == "Composition") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setCompositionText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 }
             }
