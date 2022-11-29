@@ -1,14 +1,48 @@
 public class RelationShip {
     String type;
-    Box b1;
-    Box b2;
+
+    Box box1;
+    Box box2;
     Arrow arrow;
 
-    RelationShip(Box b1, Box b2, String type, Arrow arrow) {
-        this.b1 = b1;
-        this.b2 = b2;
+    public String getType() {
+        return type;
+    }
+
+    public RelationShip setType(String type) {
         this.type = type;
+        return this;
+    }
+
+    public Box getBox1() {
+        return box1;
+    }
+
+    public RelationShip setBox1(Box box1) {
+        this.box1 = box1;
+        return this;
+    }
+
+    public Box getBox2() {
+        return box2;
+    }
+
+    public RelationShip setBox2(Box box2) {
+        this.box2 = box2;
+
+        return this;
+    }
+
+    public Arrow getArrow() {
+        return arrow;
+    }
+
+    public RelationShip setArrow(Arrow arrow) {
         this.arrow = arrow;
+        return this;
+    }
+
+    RelationShip() {
     }
 
 }

@@ -106,7 +106,7 @@ public class RightPanel extends JPanel implements Observable {
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
         }
-        // System.out.println("relationShize " + relationShips.size());
+        
         for (int i = 0; i < relationShips.size(); ++i) {
             Box b1 = relationShips.get(i).b1;
             Box b2 = relationShips.get(i).b2;
